@@ -5,29 +5,23 @@ let counter = 0;
 function onReady(){
     console.log('in onReady');
     $('#container').append('<button id="generate">generate</button>');
+    $('#container').append('<p>counter <span id="num-span">0</span></p>');
     $('#container').on('click', '#generate', makeStuff);
     $('#container').on('click', '.swap-btn', changeStuff);
     $('#container').on('click', '.delete-btn', deleteStuff);
-    
-    
 }//end onReady
 
 function makeStuff(){
     counter ++;
-    $('#container').append('<div class="redDiv" class="highlightRed"><button class="swap-btn">swap</button><button class="delete-btn">delete</button><div>')
-    $('#container').append('<p>counter' + counter + '</p>');
-    changeStuff();
+    $('#container').append('<div class="redDiv highlightRed"><button class="swap-btn">swap</button><button class="delete-btn">delete</button><div>')
+    $('#num-span').text( counter );
 }
 
 
 function changeStuff(){
-    $(".swap-btn").click(function(){
-        $(".redDiv").toggleClass("highlightRed", "highlightYellow");
-    });
+    $( this ).parent().toggleClass("highlightYellow", "highlightRed");
 }
 
 function deleteStuff(){
-    $(".delete-btn").click(function(){
-        $( this ).parent().remove();
-    });
+    $( this ).parent().remove();
 }
